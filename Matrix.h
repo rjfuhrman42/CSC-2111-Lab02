@@ -24,5 +24,6 @@ class Matrix
       static Matrix* readMatrix(const char* file_name);  //discuss static
       void writeMatrix(const char* file_name);
 };
+// comment
 
 #endif
