@@ -3,22 +3,23 @@
 
 WriteFile::WriteFile(const char* file_name) 
 {
-   output_file = new ofstream();
-   output_file->open(file_name);
+	
+  // output_file = new ofstream();
+   output_file.open(file_name);
    closed = false;
 }
 
 WriteFile::~WriteFile() 
 {
    close();
-   delete output_file;
+  // delete output_file;
 }
 
 void WriteFile::close() 
 {
    if (!closed)
    {
-      output_file->close();
+      output_file.close();
       closed = true;
    }
 }
