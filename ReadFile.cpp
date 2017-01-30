@@ -2,44 +2,41 @@
 #include <iostream>
 #include <string>
 
-ReadFile* createReadFile(const char* file_name)
+
+ReadFile::ReadFile(const char* file_name) //Contructor. I am unsure if this is correct. 
 {
-   ReadFile* rf = new ReadFile;
-
-   rf->input_file.open(file_name);
-   rf->closed = false;
-   rf->_eof = false;
-
-   return rf;
+   input_file.open(file_name);
+   closed = false;
+   eof = false;
 }
 
-void destroyReadFile(ReadFile* rf)
+ReadFile::~ReadFile() //Destructor. Im not passing anything so what am i destroying???
 {
-   close(rf);
-   delete rf;
+	close();
+  // delete input_file;
 }
 
-bool eof(ReadFile* rf)
+bool ReadFile::_eof()
 {
-   return rf->_eof;
+   return eof;
 }
 
-void close(ReadFile* rf)
+void ReadFile::close()
 {
-   if (!rf->closed)
+   if (closed == false)
    {
-      rf->input_file.close();
-      rf->closed = true;
+      input_file.close();
+      closed = true;
    }
 }
 
-String* readLine(ReadFile* rf)
+String* ReadFile::readLine()
 {
-   if (rf->closed) return NULL;
-   if (rf->_eof) return NULL;
+   if (closed == true) return NULL;
+   if (eof == true) return NULL;
 
    string text;
-   rf->_eof = !(getline(rf->input_file, text));
+	eof = !(getline(input_file, text));
 
    String* str = new String((const char*) text.c_str());
    return str;
