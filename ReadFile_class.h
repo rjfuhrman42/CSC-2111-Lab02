@@ -9,7 +9,7 @@ using namespace std;
 class ReadFile
 {
 	private:
-		
+		const char* input_file;
 		ifstream input_file;
 		bool eof;
 		bool closed;
